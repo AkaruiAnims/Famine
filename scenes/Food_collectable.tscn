@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwu3da526xmbn"]
+
+[ext_resource type="Texture2D" uid="uid://dubj4hsvmim7j" path="res://assets/Food.png" id="1_gsflu"]
+[ext_resource type="Script" path="res://scenes/food.gd" id="1_vq0md"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qwfot"]
+
+[node name="Food_collectable" type="Node2D"]
+
+[node name="food" type="Area2D" parent="."]
+script = ExtResource("1_vq0md")
+
+[node name="Food_sprite" type="Sprite2D" parent="food"]
+position = Vector2(0, -1)
+texture = ExtResource("1_gsflu")
+hframes = 8
+vframes = 8
+frame = 1
+
+[node name="food_colider" type="CollisionShape2D" parent="food"]
+shape = SubResource("CircleShape2D_qwfot")
+
+[connection signal="body_entered" from="food" to="food" method="_on_body_entered"]
