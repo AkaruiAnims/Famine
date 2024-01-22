@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://d06tpln0b8e35"]
 
 [ext_resource type="Texture2D" uid="uid://c223auxf4wwp1" path="res://assets/checkers.png" id="1_7o7e1"]
-[ext_resource type="PackedScene" uid="uid://275cnti577e7" path="res://scenes/player.tscn" id="2_2ns6w"]
+[ext_resource type="PackedScene" uid="uid://275cnti577e7" path="res://scenes/test_player.tscn" id="2_2ns6w"]
 [ext_resource type="PackedScene" uid="uid://cwu3da526xmbn" path="res://scenes/Food_collectable.tscn" id="3_m0rlx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_biqgr"]
@@ -83,5 +83,5 @@ layer_0/tile_data = PackedInt32Array(65532, 131072, 0, 131068, 131072, 1, 65533,
 [node name="Food_collectable" parent="." instance=ExtResource("3_m0rlx")]
 position = Vector2(445, -46)
 
-[node name="Player" parent="." instance=ExtResource("2_2ns6w")]
-position = Vector2(-138, -18)
+[node name="test_Player" parent="." instance=ExtResource("2_2ns6w")]
+position = Vector2(-129, -19)

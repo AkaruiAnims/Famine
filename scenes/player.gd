@@ -38,11 +38,11 @@ func _physics_process(delta):
 func update_facing_direction():
 	if Input.get_action_strength("left") and Input.get_action_strength("right"):
 		return
-	if Input.get_action_strength("left") and $Sprite.flip_h != true:
-		$Sprite.flip_h = true
+	if Input.get_action_strength("left") and $playerSprite.flip_h != true:
+		$playerSprite.flip_h = true
 		$PlayerAnimation.play("Turn Around")
-	elif Input.get_action_strength("right") and $Sprite.flip_h != false:
-		$Sprite.flip_h = false
+	elif Input.get_action_strength("right") and $playerSprite.flip_h != false:
+		$playerSprite.flip_h = false
 		$PlayerAnimation.play("Turn Around")
 		
 		
