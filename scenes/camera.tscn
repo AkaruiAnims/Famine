@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqali6qdo40k"]
+
+[ext_resource type="Script" path="res://scenes/camMovement.gd" id="1_i43ir"]
+
+[node name="camera" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="camMovement" type="RemoteTransform2D" parent="."]
+script = ExtResource("1_i43ir")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://275cnti577e7"]
 
-[ext_resource type="Script" path="res://scenes/player.gd" id="1_fw27o"]
 [ext_resource type="Texture2D" uid="uid://buyxn88oqdl7c" path="res://assets/CMGaTo_all.png" id="1_kv12m"]
+[ext_resource type="Script" path="res://scenes/test_player.gd" id="1_pmm72"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wrj1k"]
 radius = 14.36
@@ -218,7 +218,7 @@ _data = {
 }
 
 [node name="test_Player" type="CharacterBody2D"]
-script = ExtResource("1_fw27o")
+script = ExtResource("1_pmm72")
 
 [node name="playerSprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_kv12m")
