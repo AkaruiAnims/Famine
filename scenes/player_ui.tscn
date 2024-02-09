@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://06w7sanajl88"]
+
+[ext_resource type="Texture2D" uid="uid://djternoe8vo3j" path="res://assets/Meat_UI.png" id="1_pd4u6"]
+[ext_resource type="Script" path="res://scenes/UI_ItemDisplay.gd" id="1_v0s67"]
+
+[node name="Hud" type="GridContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ItemDisplay" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+script = ExtResource("1_v0s67")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/ItemDisplay"]
+layout_mode = 2
+texture = ExtResource("1_pd4u6")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/ItemDisplay"]
+layout_mode = 2
+text = "0"
