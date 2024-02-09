@@ -24,8 +24,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="background" type="Sprite2D" parent="MarginContainer/VBoxContainer"]
-position = Vector2(74, 69)
-scale = Vector2(0.996293, 0.782783)
+position = Vector2(74, 104)
 texture = ExtResource("2_ouk1v")
 
 [node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
