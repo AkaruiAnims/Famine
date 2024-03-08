@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var jumpVelocity : float = -300.0
 @export var foodLevel : int = 1;
 @export var maxFood : int = 5;
+@export var UiLabel : Label;
 var is_running = false;
 var falling = false;
 var is_sleeping = false;
@@ -55,6 +56,7 @@ func _physics_process(delta):
 		if is_on_floor():
 			$PlayerAnimation.play("Idle")
 
+	update_player_score()
 	update_facing_direction()
 	move_and_slide()
 
@@ -66,4 +68,6 @@ func update_facing_direction():
 	elif Input.get_action_strength("right") and $playerSprite.flip_h != false:
 		$playerSprite.flip_h = false
 		
-		
+func update_player_score():
+	if ( int(UiLabel.text) < foodLevel  ):
+		UiLabel.text = str(foodLevel)

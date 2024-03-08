@@ -1688,8 +1688,9 @@ layer_0/tile_data = PackedInt32Array(131074, 393216, 29, 131073, 393216, 29, 131
 layer_1/name = "non_touch"
 layer_1/tile_data = PackedInt32Array()
 
-[node name="Player" parent="." instance=ExtResource("2_v2jkh")]
+[node name="Player" parent="." node_paths=PackedStringArray("UiLabel") instance=ExtResource("2_v2jkh")]
 position = Vector2(-47, -8)
+UiLabel = NodePath("../CanvasLayer/Hud/MarginContainer/ItemDisplay/Label")
 
 [node name="background" type="ParallaxBackground" parent="."]
 
