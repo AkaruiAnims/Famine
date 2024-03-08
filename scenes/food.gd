@@ -14,6 +14,7 @@ func _process(delta):
 
 
 func _on_body_entered(body):
+	print(body)
 	if body.get_node_or_null("playerSprite") != null :
 		body.foodLevel = body.foodLevel + foodValue
 		get_tree().queue_delete(self)
