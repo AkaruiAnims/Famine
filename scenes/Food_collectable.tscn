@@ -6,6 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_qwfot"]
 
 [node name="Food_collectable" type="Node2D"]
+scale = Vector2(0.52, 0.52)
 
 [node name="food" type="Area2D" parent="."]
 script = ExtResource("1_vq0md")

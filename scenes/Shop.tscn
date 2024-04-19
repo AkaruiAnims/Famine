@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=3 uid="uid://vfq126wn2mci"]
+
+[ext_resource type="Script" path="res://scenes/shop.gd" id="1_mogof"]
+[ext_resource type="Texture2D" uid="uid://b43ftv3m2ynu8" path="res://assets/sprite_sheets/Ratfolk Commoner.png" id="2_0d668"]
+[ext_resource type="PackedScene" uid="uid://1jnbkpgs6riv" path="res://scenes/keys.tscn" id="3_m4cje"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qwfot"]
+
+[sub_resource type="Animation" id="Animation_ftddy"]
+resource_name = "Idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("rat_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(0.0968276, 1, 1, 4.14106),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_1s40d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("rat_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wvgud"]
+_data = {
+"Idle": SubResource("Animation_ftddy"),
+"RESET": SubResource("Animation_1s40d")
+}
+
+[node name="checkpoint" type="Node2D"]
+
+[node name="shop" type="Area2D" parent="."]
+script = ExtResource("1_mogof")
+
+[node name="rat_sprite" type="Sprite2D" parent="shop"]
+position = Vector2(-1.92308, -5.76923)
+texture = ExtResource("2_0d668")
+hframes = 8
+vframes = 2
+
+[node name="rat_colider" type="CollisionShape2D" parent="shop"]
+shape = SubResource("CircleShape2D_qwfot")
+
+[node name="Keys" parent="shop" instance=ExtResource("3_m4cje")]
+position = Vector2(1, -15)
+scale = Vector2(0.5, 0.5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="shop"]
+libraries = {
+"": SubResource("AnimationLibrary_wvgud")
+}
+autoplay = "Idle"
+
+[connection signal="body_entered" from="shop" to="shop" method="_on_body_entered"]

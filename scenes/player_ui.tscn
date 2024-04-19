@@ -27,3 +27,8 @@ stretch_mode = 5
 [node name="Label" type="Label" parent="MarginContainer/ItemDisplay"]
 layout_mode = 2
 text = "0"
+
+[node name="Label2" type="Label" parent="MarginContainer/ItemDisplay"]
+layout_mode = 2
+text = "/4
+"
