@@ -1,6 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://07u82bceprha"]
+[gd_scene load_steps=11 format=3 uid="uid://07u82bceprha"]
 
+[ext_resource type="Script" path="res://scenes/EnemyHitBox.gd" id="1_dxx7u"]
 [ext_resource type="Texture2D" uid="uid://72uvylsh7h0y" path="res://assets/sprite_sheets/Ratfolk Axe Sprite Sheet.png" id="1_ivjrm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ig0mq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qfxry"]
 
@@ -96,6 +99,13 @@ _data = {
 
 [node name="Enemy" type="CharacterBody2D"]
 
+[node name="EnemyHitBox" type="Area2D" parent="."]
+script = ExtResource("1_dxx7u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitBox"]
+scale = Vector2(1.1, 1.1)
+shape = SubResource("CircleShape2D_ig0mq")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_qfxry")
 
@@ -110,3 +120,5 @@ libraries = {
 "": SubResource("AnimationLibrary_2l6ks")
 }
 autoplay = "Idle"
+
+[connection signal="body_entered" from="EnemyHitBox" to="EnemyHitBox" method="_on_body_entered"]

@@ -75,5 +75,20 @@ position = Vector2(3, 29)
 scale = Vector2(0.0399982, 0.0399982)
 texture = ExtResource("4_6p7em")
 
+[node name="Name" type="Label" parent="shop/TextBox"]
+offset_left = -675.029
+offset_top = -300.013
+offset_right = -625.029
+offset_bottom = -277.013
+scale = Vector2(8.00031, 8.00031)
+text = "Handy"
+
+[node name="text" type="Label" parent="shop/TextBox"]
+offset_left = -1075.05
+offset_top = -125.005
+offset_right = 596.953
+offset_bottom = -102.005
+scale = Vector2(3.00009, 7.00026)
+
 [connection signal="body_entered" from="shop" to="shop" method="_on_body_entered"]
 [connection signal="body_exited" from="shop" to="shop" method="_on_body_exited"]

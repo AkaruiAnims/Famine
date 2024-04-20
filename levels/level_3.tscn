@@ -1773,9 +1773,10 @@ position = Vector2(909, 22)
 [node name="Food_collectable10" parent="." instance=ExtResource("7_i4mky")]
 position = Vector2(903, -90)
 
-[node name="Finish" parent="." instance=ExtResource("9_lddaa")]
+[node name="Finish" parent="." node_paths=PackedStringArray("level") instance=ExtResource("9_lddaa")]
 position = Vector2(2007, 16)
+level = NodePath("..")
 
 [node name="Player" parent="." node_paths=PackedStringArray("UiLabel") instance=ExtResource("2_v2jkh")]
-position = Vector2(-47, -8)
+position = Vector2(-72, 25)
 UiLabel = NodePath("../CanvasLayer/Hud/MarginContainer/ItemDisplay/Label")

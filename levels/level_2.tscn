@@ -1782,11 +1782,13 @@ position = Vector2(2311, -73)
 [node name="Food_collectable13" parent="." instance=ExtResource("6_30dn5")]
 position = Vector2(696, -233)
 
-[node name="Finish" parent="." instance=ExtResource("9_qvqg3")]
+[node name="Finish" parent="." node_paths=PackedStringArray("level") instance=ExtResource("9_qvqg3")]
 position = Vector2(2727, -16)
+level = NodePath("..")
 
-[node name="Finish2" parent="." instance=ExtResource("9_qvqg3")]
+[node name="Finish2" parent="." node_paths=PackedStringArray("level") instance=ExtResource("9_qvqg3")]
 position = Vector2(2937, -16)
+level = NodePath("..")
 
 [node name="Player" parent="." node_paths=PackedStringArray("UiLabel") instance=ExtResource("2_tucex")]
 position = Vector2(-99, -76)

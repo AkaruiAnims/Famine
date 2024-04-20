@@ -1,9 +1,12 @@
 extends Node
 
-var foodLevel = 0;
+#var foodLevel = 0;
 var jumpUpgradeLevel : int = 1;
 var atCheckPoint = false;
 var oneTime = true;
+var newGamePlus = false;
+var sleepUnlock = false;
+var firstChat = true;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

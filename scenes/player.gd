@@ -18,6 +18,7 @@ var jumpIsHeld = false;
 var lastCheckPoint : Vector2;
 var playerInfo : Node;
 var jumpContainer;
+var sleepUnlock;
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -26,8 +27,9 @@ func _ready():
 	playerInfo = get_node("/root/PlayerInfo");
 	jumpContainer = get_node("JumpContainer");
 	lastCheckPoint = Vector2( position.x, position.y );
-	foodLevel = playerInfo.foodLevel;
+	#foodLevel = playerInfo.foodLevel;
 	jumpUpgradeLevel = playerInfo.jumpUpgradeLevel;
+	sleepUnlock = playerInfo.sleepUnlock;
 	
 
 func _physics_process(_delta):
@@ -35,7 +37,7 @@ func _physics_process(_delta):
 	#if Input.is_action_just_pressed("block"):
 		#foodLevel = 5;
 	
-	if Input.is_action_just_pressed("sleep") && is_on_floor():
+	if Input.is_action_just_pressed("sleep") && is_on_floor() && sleepUnlock == true:
 		$PlayerAnimation.play("Sleep")
 		is_emoting = !is_emoting
 		return
@@ -102,8 +104,7 @@ func update_facing_direction():
 		$playerSprite.flip_h = false
 		
 func update_player_score():
-	if ( int(UiLabel.text) < foodLevel ):
-		UiLabel.text = str(foodLevel)
+	UiLabel.text = str(foodLevel)
 		
 func jump_hold():
 	
