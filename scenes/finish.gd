@@ -22,6 +22,8 @@ func _change_scene():
 func _on_body_entered(body):
 	if body.get_node_or_null("playerSprite") != null :
 		if body.foodLevel >= 5:
+			body.playerInfo.foodLevel = body.foodLevel;
+			body.playerInfo.jumpUpgradeLevel = body.jumpUpgradeLevel
 			_change_scene()
 
 

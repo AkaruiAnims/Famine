@@ -16,12 +16,19 @@ var targetTime;
 var targetTimeIsSet = false;
 var jumpIsHeld = false;
 var lastCheckPoint : Vector2;
+var playerInfo : Node;
+var jumpContainer;
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
+	playerInfo = get_node("/root/PlayerInfo");
+	jumpContainer = get_node("JumpContainer");
 	lastCheckPoint = Vector2( position.x, position.y );
+	foodLevel = playerInfo.foodLevel;
+	jumpUpgradeLevel = playerInfo.jumpUpgradeLevel;
+	
 
 func _physics_process(_delta):
 	
@@ -56,6 +63,7 @@ func _physics_process(_delta):
 		if jump_hold() == true || Input.is_action_just_released("jump"):
 			jumpIsHeld = false;
 			targetTimeIsSet = false;
+			jumpContainer.hideJumps();
 			velocity.y = jumpVelocity[jumpIndex];
 			$PlayerAnimation.play("Jump");
 
@@ -105,14 +113,16 @@ func jump_hold():
 		jumpIsHeld = true;
 		jumpPower = 1;
 		jumpIndex = 0;
+	
+	if jumpContainer.jumps[jumpPower].visible == false:
+		jumpContainer.jumps[jumpPower].visible = true;
+	
 		
 	if jumpPower == jumpUpgradeLevel: 
 		return true;
 		
 	if Time.get_ticks_msec() > targetTime:
-		print("next jump stage");
 		jumpPower = jumpPower + 1;
-		print(jumpPower);
 		targetTime = targetTime + 1500;
 		jumpIndex = jumpIndex + 1;
 	return false

@@ -15,6 +15,10 @@ run/main_scene="res://levels/title.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+PlayerInfo="*res://scenes/player_info.tscn"
+
 [display]
 
 window/size/mode=2
