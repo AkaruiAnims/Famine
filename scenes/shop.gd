@@ -22,6 +22,8 @@ func _process(delta):
 			elif oneTime == true:
 				player.jumpUpgradeLevel = player.jumpUpgradeLevel + 1;
 				player.playerInfo.jumpUpgradeLevel = player.playerInfo.jumpUpgradeLevel + 1;
+				player.playerInfo.oneTime = false;
+				oneTime = false;
 			else:
 				print("chat");
 		
@@ -30,6 +32,7 @@ func _on_body_entered(body):
 	if body.get_node_or_null("playerSprite") != null :
 		body.newCheckPoint();
 		body.playerInfo.atCheckPoint = true;
+		oneTime = body.playerInfo.oneTime;
 		player = body;
 
 
