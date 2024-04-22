@@ -19,6 +19,7 @@ var lastCheckPoint : Vector2;
 var playerInfo : Node;
 var jumpContainer;
 var sleepUnlock;
+var justDied = false;
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -36,7 +37,7 @@ func _physics_process(_delta):
 	
 	#if Input.is_action_just_pressed("block"):
 		#foodLevel = 5;
-	
+	#
 	if Input.is_action_just_pressed("sleep") && is_on_floor() && sleepUnlock == true:
 		$PlayerAnimation.play("Sleep")
 		is_emoting = !is_emoting
@@ -62,12 +63,23 @@ func _physics_process(_delta):
 
 	# Handle jump.
 	if (Input.is_action_just_pressed("jump") || jumpIsHeld == true || Input.is_action_just_released("jump")) and is_on_floor():
+		if justDied:
+			justDied = false;
+			return
+			
 		if jump_hold() == true || Input.is_action_just_released("jump"):
 			jumpIsHeld = false;
 			targetTimeIsSet = false;
 			jumpContainer.hideJumps();
 			velocity.y = jumpVelocity[jumpIndex];
 			$PlayerAnimation.play("Jump");
+	else:
+		if justDied:
+			jumpIsHeld = false;
+			jumpPower = 1;
+			jumpIndex = 0;
+			targetTimeIsSet = false;
+			jumpContainer.hideJumps();
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -90,6 +102,7 @@ func _physics_process(_delta):
 	
 func death():
 	position = lastCheckPoint;
+	justDied = true;
 
 func newCheckPoint( ):
 	lastCheckPoint.x = position.x;
@@ -104,7 +117,7 @@ func update_facing_direction():
 		$playerSprite.flip_h = false
 		
 func update_player_score():
-	UiLabel.text = str(foodLevel)
+	UiLabel.text = str(foodLevel);
 		
 func jump_hold():
 	

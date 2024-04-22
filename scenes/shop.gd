@@ -1,6 +1,6 @@
 extends Area2D
 var player;
-var upgrade = true;
+var upgrade = false;
 var oneTime;
 var firstChat;
 var seeText;
@@ -10,7 +10,8 @@ var textBoxVisible = false;
 var setText;
 var newGamePlus;
 var textPass = false;
-
+var isFed = false;
+var reset
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,14 +19,23 @@ func _ready():
 	text = find_child("text");
 
 func dialogue():
-	if  firstChat == true :
+	if  newGamePlus && isFed:
+		text.text = "Thank you! ( press 4 )"
+		reset = true;
+		isFed = false;
+	elif firstChat == true :
 		text.text = "You seem hungry, best get some food on your way home, and since cats don't like water \n you should stay away from it!, I'll help you back if you're in danger tho :D";
 	elif oneTime == true && textPass == false :
-		text.text = "I can teach you to jump higher, normally I'd ask for 2 foods, but this time you get 50% off. \n By the way, if you hold the jump button, you'll jump higher!";		
+		text.text = "I can teach you to jump higher, normally I'd ask for 2 foods, but this time you get 50% off. \n Hint: Hold the space button untill you jump or see 2+ arrows!";		
 	elif newGamePlus == true :
-		text.text = "Come back to me with 2 foods and I'll give you \n a reward :D ( press 4 )";
+		text.text = "Come back to me with 2 foods and I'll give you \n a reward :D ( food must be 6+ )";
+	elif isFed:
+		text.text = "Thank you!"
+		isFed = false;
+		reset = true;
 	else:
-		text.text = "Feed me 2 food for Jump Upgrades (must be 4/4 food first) \n and stay clear of water and other rats!";
+		upgrade = true;
+		text.text = "Feed me 2 food for Jump Upgrades (food must be 6 or more) \n and stay clear of water and other rats!";
 	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -34,11 +44,15 @@ func _process(delta):
 		$TextBox.visible = true;
 	
 	if 	player != null:
-		if Input.is_key_pressed(KEY_E): 
+		if Input.is_action_just_pressed("Interact"): 
 			if player.foodLevel >= 6 && upgrade == true && player.jumpUpgradeLevel != 5:
 				player.foodLevel = player.foodLevel - 2;
 				player.jumpUpgradeLevel = player.jumpUpgradeLevel + 1;
 				player.playerInfo.jumpUpgradeLevel = player.playerInfo.jumpUpgradeLevel + 1;
+				isFed = true;
+				dialogue();
+			elif isFed:
+				dialogue();
 			elif firstChat == true:
 				dialogue();
 				textBoxVisible = true;
@@ -56,15 +70,22 @@ func _process(delta):
 				textBox.visible = true;
 				oneTime = false;
 			else:
-				if textBoxVisible == true:
+				if reset == true:
+					textBox.visible = false;
+					textBoxVisible = false;
+					reset = false;
+				elif textBoxVisible == true:
 					if newGamePlus == true && player.foodLevel >= 6:
 						player.sleepUnlock = true;
-						player.playerinfo.sleepUnlock = true;
+						player.playerInfo.sleepUnlock = true;
+						player.foodLevel = player.foodLevel - 2;
+						isFed = true;
+						dialogue();
 				else:
 					textBox.visible = true;
 					textBoxVisible = true;
 					dialogue();
-	
+					
 func _on_body_entered(body):
 	if body.get_node_or_null("playerSprite") != null :
 		body.newCheckPoint();
